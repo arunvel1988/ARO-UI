@@ -27,4 +27,35 @@ az group create \
 
   ############################################################################################
 
-  
+az network vnet subnet create \
+  --resource-group aro-rg \
+  --vnet-name aro-vnet \
+  --name worker-subnet \
+  --address-prefixes 10.0.2.0/23
+
+  ############################################################################################
+
+az network vnet subnet update \
+  --name master-subnet \
+  --resource-group aro-rg \
+  --vnet-name aro-vnet \
+  --disable-private-link-service-network-policies true
+
+
+ 
+  ############################################################################################
+
+
+az ad sp create-for-rbac --name aro-sp
+
+  ############################################################################################
+
+az group show --name aro-rg --query id -o tsv
+
+az role assignment create \
+  --assignee <APP_ID> \
+  --role "Contributor" \
+  --scope <SCOPE_ID>
+
+  ############################################################################################
+
