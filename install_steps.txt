@@ -1,0 +1,30 @@
+############################################################################################
+
+
+az login
+az account set --subscription "<YOUR_SUBSCRIPTION_ID>"
+
+############################################################################################
+az provider register -n Microsoft.RedHatOpenShift
+az provider register -n Microsoft.Compute
+az provider register -n Microsoft.Storage
+az provider register -n Microsoft.Network
+
+############################################################################################
+
+az group create \
+  --name aro-rg \
+  --location centralindia
+
+############################################################################################
+  az network vnet create \
+  --resource-group aro-rg \
+  --name aro-vnet \
+  --address-prefixes 10.0.0.0/16 \
+  --subnet-name master-subnet \
+  --subnet-prefix 10.0.0.0/23
+
+
+  ############################################################################################
+
+  
