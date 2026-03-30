@@ -59,3 +59,27 @@ az role assignment create \
 
   ############################################################################################
 
+
+
+az aro create \
+  --resource-group aro-rg \
+  --name aro-cluster \
+  --vnet aro-vnet \
+  --master-subnet master-subnet \
+  --worker-subnet worker-subnet \
+  --client-id <APP_ID> \
+  --client-secret <PASSWORD>
+
+  ############################################################################################
+
+az aro list-credentials \
+  --name aro-cluster \
+  --resource-group aro-rg
+
+oc login https://api.<cluster-domain>:6443 -u kubeadmin -p <PASSWORD>
+
+oc new-project student1
+oc new-project student2
+  ############################################################################################
+
+
